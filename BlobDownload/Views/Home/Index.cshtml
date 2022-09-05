@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BlobDownload.Models.BlobContaner>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css /> -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4 class="title">Data <span>List</span></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <div class="btn_group">
+                                <input type="text" class="form-control" placeholder="Search">                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        
+                        <tbody>
+                            @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="panel-body table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>                                                           
+                                                            <th>Date</th>
+                                                            <th>File</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        @foreach (var blb in item.Blobis) {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => blb.Date)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => blb.FileName)
+                                                                </td>
+                                                                <td>
+                                                                    @*<a href="#" data-tip="download"><i class="fa fa-download"></i></a>*@
+                                                                    @Html.ActionLink("Download", "Download", new { fName =blb.FileName, container =  item.Name })
+                                                                </td>
+                                                            </tr>
+                                                        }                           
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }                           
+                        </tbody>
+                    </table>
+                </div>
+                
+				@*<div class="panel-footer">
+                    <div class="row">
+                        <div class="col col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div>
+                        <div class="col-sm-6 col-xs-6">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li><a href="#"><</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">></a></li>
+                            </ul>
+                            <ul class="pagination visible-xs pull-right">
+                                <li><a href="#"><</a></li>
+                                <li><a href="#">></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
